@@ -1,0 +1,18 @@
+.avatar {
+  border-radius: 50%;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffff!important;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  padding: 12px 0px !important;
+  color: var(--text-color)!important;
+}

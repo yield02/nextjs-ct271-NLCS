@@ -1,0 +1,22 @@
+.container {
+    max-width: 1200px;
+    display: flex;
+    padding-bottom: 64px;
+    justify-content: center;
+}
+.icon {
+    width: 80px;
+}
+
+.description {
+    margin: 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.linkIcon {
+    font-size: 24px;
+    padding: 4px;
+    margin-right: 4px;
+}

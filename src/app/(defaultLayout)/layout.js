@@ -1,8 +1,8 @@
+import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
 import Provider from '@/components/Provider'
-import { Inter } from 'next/font/google'
+import Slider from '@/components/Slider/Slider'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Diễn Đàn Huyền Học',
@@ -13,7 +13,9 @@ export default function DefaultLayout({ children }) {
   return (
     <div className='root'>
       <Header></Header>
+      <Slider></Slider>
       {children}
+      <Footer></Footer>
     </div>
   )
 }

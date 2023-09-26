@@ -6,13 +6,57 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --header-background: #fff;
+}
+
+@font-face {
+  font-family: TikTokDisplay;
+  src: url("/fonts/TikTokDisplay-Bold.otf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: TikTokDisplay;
+  src: url("/fonts/TikTokDisplay-Medium.otf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: TikTokDisplay;
+  src: url("/fonts/TikTokDisplay-Regular.otf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: TikTokText;
+  src: url("/fonts/TikTokText-Bold.otf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: TikTokText;
+  src: url("/fonts/TikTokText-Medium.otf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: TikTokText;
+  src: url("/fonts/TikTokText-Regular.otf");
+  font-weight: 500;
+}
+
+
+@font-face {
+  font-family: ThuPhap;
+  src: url("/fonts/thuphap.ttf");
+  font-weight: 600;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --backgroun-color: 0, 0, 0;
-
+    --text-color: #3B3B3B;
 
     // HEADER
     --header-background: #fff;
@@ -26,5 +70,6 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: var(--background-color)
+  background: var(--background-color);
+  font-family: TikTokText, 'Times New Roman', Times, serif !important;
 }
