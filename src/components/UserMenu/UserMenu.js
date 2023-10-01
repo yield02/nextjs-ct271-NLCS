@@ -13,18 +13,18 @@ export default function UserMenu({children, className='', ...props}) {
 
 
     return <Link href={"/user"} id="my-anchor-element" data-tooltip-delay-hide={400}>
-            <Image className={styles.avatar} src="/avatar.jpeg" width={40} height={40}></Image>
-            <Tooltip
-                className={styles.menuContainer}
-                anchorSelect="#my-anchor-element"
-                place="bottom-end"
-                clickable
-            >
-                <MenuItem href={"/auth/login"} Icon={AiOutlineUser}>Thanh Nhường</MenuItem>
-                <MenuItem href={"/auth/login"} Icon={BsReverseLayoutTextWindowReverse}>Bài Viết Của Tôi</MenuItem>
-                <MenuItem href={"/auth/login"} Icon={FaArrowRightToBracket}>Đăng xuất</MenuItem>
-            </Tooltip>
-            </Link> 
+        <Image className={styles.avatar} alt="" src="/avatar.jpeg" width={40} height={40}></Image>
+        <Tooltip
+            className={styles.menuContainer}
+            anchorSelect="#my-anchor-element"
+            place="bottom-end"
+            clickable
+        >
+            <MenuItem href={"/user"} Icon={AiOutlineUser}>Thanh Nhường</MenuItem>
+            <MenuItem href={"/auth/login"} Icon={BsReverseLayoutTextWindowReverse}>Bài Viết Của Tôi</MenuItem>
+            <MenuItem href={"/auth/login"} Icon={FaArrowRightToBracket}>Đăng xuất</MenuItem>
+        </Tooltip>
+        </Link> 
 }
 
 
