@@ -16,7 +16,7 @@ export async function POST(req, res) {
     //Check User Exists
     let id = await User.exists({username: data.username}); 
     if(id) {
-        return NextResponse.json({error: "Tài khoản này đã tồn tại"}, {status: 200});
+        return NextResponse.json({error: "Tài khoản này đã tồn tại"}, {status: 409});
     }
 
     // Hasched PASSWORD

@@ -9,10 +9,10 @@ export default function Category({data, Icon=DocumentIcon}) {
         <div className={`${styles.container} flex-grow`}>
             <div className={`${styles.CategoryBox} flex basis-1/2`}>
                 <Icon></Icon>
-                <Link href={'/'}>
+                <Link href={`/category/${data._id}`}>
                     <div className={`${styles.CategoryContent}`}>
-                        <h4 className={styles.CategoryTitle}>Nhân sự</h4>
-                        <p className={styles.Description}>Description qwdqwdqwdqwd</p>
+                        <h4 className={styles.CategoryTitle}>{data.category_name}</h4>
+                        <p className={styles.Description}>{data.description}</p>
                     </div>
                 </Link>
             </div>

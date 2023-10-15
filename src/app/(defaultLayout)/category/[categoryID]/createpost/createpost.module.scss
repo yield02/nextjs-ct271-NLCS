@@ -1,0 +1,46 @@
+.container {
+    max-width: 1200px;
+    padding: 84px 0px;
+}
+
+
+
+.box {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 32px 18px;
+    margin-bottom: 12px;
+
+    .headerText {
+        font-family: TikTokText, 'Times New Roman', Times, serif;
+        font-size: 24px;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    .labelTitle {
+        font-size: 18px;
+    }
+
+    .titleBox{
+        margin: 18px 0px;
+        
+     
+
+        .title {
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-radius: 4px;
+        }
+    }
+
+    .submitBtn {
+        font-size: 18px;
+        border:  1px solid #ddd;
+    }
+
+    .showcontent {
+        border-top: 1px solid #ddd;
+        padding: 32px 0px;
+    }
+}

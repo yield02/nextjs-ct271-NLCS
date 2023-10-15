@@ -2,6 +2,9 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+import login from "../../login";
+
+
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -11,7 +14,12 @@ export const authOptions = {
         password: {  label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
+
+        const data = await JSON.parse(credentials.data);
         
+        const user = login(data);
+
+        return user;
       }
     }),
     GoogleProvider({
@@ -23,7 +31,7 @@ export const authOptions = {
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
-    async session({ session, token, user }) {
+    async session({session, token, user }) {
       session.user = token;
       return session;
     }

@@ -1,7 +1,32 @@
+"use client"
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+
 import Category from '@/components/Category/Category'
 import styles from './home.module.scss'
 
 export default function Home() {
+  
+  const [data, setData] = useState([]);
+
+  useEffect(()=> {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'http://localhost:3000/api/category/getAll',
+      headers: { }
+    };
+    
+    axios.request(config)
+    .then((response) => {
+      setData(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  }, [data])
+  
   return (
     <main className={`${styles.container} container mx-auto`}>
         <div className={styles.box}>
@@ -10,10 +35,12 @@ export default function Home() {
             <div className="basis-1/6 text-end">Số bài</div>
             <div className="basis-1/3 text-end">Bài mới</div>
           </div>
-          <Category></Category>
-          <Category></Category>
-          <Category></Category>
-          <Category></Category>
+          {
+          
+            data.map((item) => (
+              <Category key={item._id} data={item}></Category>
+            ))
+          }
         </div>
     </main>
   )

@@ -10,7 +10,7 @@ export default function Button({children, className='', ...props}) {
 
 
 
-    return <Comp className={`${styles.button} ${styles.className}`} {...props} role="button">{children}</Comp>
+    return <Comp className={`${styles.button} ${className}`} {...props} role="button">{children}</Comp>
 }
 
 

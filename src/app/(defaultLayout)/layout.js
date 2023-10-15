@@ -1,6 +1,5 @@
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
-import Provider from '@/components/Provider'
 import Slider from '@/components/Slider/Slider'
 
 

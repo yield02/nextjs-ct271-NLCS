@@ -1,13 +1,16 @@
+"use client"
 import styles from './Header.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 import Search from '../Search/Search'
 import Button from '../Button/Button'
+import { useSession } from 'next-auth/react'
 import UserMenu from '../UserMenu/UserMenu'
 
-
 export default function Header() {
-    const login = true;
+
+    const { data: session, status } = useSession();
+
     return (
     <nav className={`${styles.container} mx-auto`}>
         <div className={`${styles.header} container mx-auto flex justify-between`}>
@@ -22,14 +25,15 @@ export default function Header() {
                 </div>
             </div>
             <div className={`flex justify-center items-center`}>
-            {!login && 
-                (<><Button href="/auth/login" className='underline'>Đăng nhập</Button>
+            {!session && 
+                <>
+                <Button href="/auth/login" className='underline'>Đăng nhập</Button>
                     <span>/</span>
-                    <Button href="/auth/signup" className='underline'>Đăng Ký</Button>
-                </>)
+                <Button href="/auth/signup" className='underline'>Đăng Ký</Button>
+                </>
             }
             {
-                login && <UserMenu/>
+                session && <UserMenu data={session.user}/>
             }
             </div>
         </div>

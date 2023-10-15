@@ -8,8 +8,9 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 
 import styles from './UserMenu.module.scss'
 import MenuItem from "./MenuItem/MenuItem";
+import { signOut } from "next-auth/react";
 
-export default function UserMenu({children, className='', ...props}) {
+export default function UserMenu({data, children, className='', ...props}) {
 
 
     return <Link href={"/user"} id="my-anchor-element" data-tooltip-delay-hide={400}>
@@ -20,9 +21,9 @@ export default function UserMenu({children, className='', ...props}) {
             place="bottom-end"
             clickable
         >
-            <MenuItem href={"/user"} Icon={AiOutlineUser}>Thanh Nhường</MenuItem>
+            <MenuItem href={"/user"} Icon={AiOutlineUser}>{data?.username}</MenuItem>
             <MenuItem href={"/auth/login"} Icon={BsReverseLayoutTextWindowReverse}>Bài Viết Của Tôi</MenuItem>
-            <MenuItem href={"/auth/login"} Icon={FaArrowRightToBracket}>Đăng xuất</MenuItem>
+            <MenuItem onClick={()=>{signOut()}} Icon={FaArrowRightToBracket}>Đăng xuất</MenuItem>
         </Tooltip>
         </Link> 
 }

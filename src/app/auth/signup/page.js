@@ -8,6 +8,7 @@ import styles from './signup.module.scss';
 import Message from '@/components/Message/Message';
 
 export default function Signup() {
+    
     const router = useRouter()
     const [message, setMessage] = useState({messageType: "danger", messageText: ""});
     const { register, formState: { errors },handleSubmit, watch} = useForm();
