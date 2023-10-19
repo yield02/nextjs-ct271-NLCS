@@ -16,20 +16,43 @@ import Button from '@/components/Button/Button';
 
 export default function CreatePost({params}) {
     const { data: session, status } = useSession();
-    // isAuthencation(session);
+    isAuthencation(session);
     
 
 
     const [editor, setEditor] = useState(EditorState.createEmpty());
-
-    console.log(typeof editor);
+    const [title, setTitle] = useState("");
 
     // let html = draftToHtml(convertToRaw(editor.getCurrentContent()));
     
-    function onEditorStateChange(editorState){
-      setEditor(editorState)
+    function onEditorStateChange(editor){
+      setEditor(editor)
     }
 
+    function submit(e) {
+      e.preventDefault();
+
+      const data = {
+        body: convertToRaw(editor.getCurrentContent()),
+        title,
+        user: session?.user,
+        categoryID: params.categoryID
+      }
+
+      var requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        redirect: 'follow'
+      };
+      
+      fetch("http://localhost:3000/api/post/create", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+        })
+        .catch(error => console.log('error', error));
+    }
+    console.log(editor);
     return (
         <main className={`${styles.container} container mx-auto`}>
           <div>
@@ -39,10 +62,10 @@ export default function CreatePost({params}) {
           </div>
         <div className={styles.box}>
           <h1 className={styles.headerText}>TẠO BÀI VIẾT</h1>
-          <form>
+          <form onSubmit={submit}>
             <div className={`${styles.titleBox} flex justify-start flex-col`}>
               <label className={styles.labelTitle} for="title">Tiêu đề bài viết:</label>
-              <input className={styles.title} id="title" type='text' name="title"></input>
+              <input className={styles.title} id="title" type='text' name="title" value={title} onChange={(e) => setTitle(e.target.value)}></input>
             </div>
             <div>
               <label className={styles.labelTitle} for="title">Nội dung bài viết:</label>

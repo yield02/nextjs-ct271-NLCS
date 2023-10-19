@@ -1,0 +1,40 @@
+.container {
+    max-width: 1200px;
+    padding: 84px 0px;
+}
+
+.headercontainer {
+    text-align: center;
+    .headerText {
+        font-size: 28px;
+    }
+}
+
+.bodycontainer {
+    margin-top: 32px;
+}
+
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    margin-right: 12px;
+}
+
+.authorname {
+    color: #3c4146;
+    font-size: 18px;
+}
+
+.authorinfor {
+    display: inline-flex;
+    margin-right: 18px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.6;
+    font-size: 14px;
+    .icons {
+        font-size: 18px;
+        margin-right: 4px;
+    }
+}

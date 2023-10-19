@@ -1,29 +1,31 @@
 import { DocumentIcon } from '../Icons';
 import { AiOutlineClockCircle, AiOutlineComment } from 'react-icons/ai'
 import Image from 'next/image';
-
+import moment from 'moment/moment';
 import styles from './Post.module.scss'
 import Link from 'next/link';
+import 'moment/locale/vi'
 
+moment.locale('vi');
 
 export default function Category({data, Icon=DocumentIcon}) {
-
     return (
         <div className={`${styles.container} flex-grow`}>
             <div className={`${styles.CategoryBox} flex basis-1/2`}>
 
                 <Icon></Icon>
                 
-                <Link href={'/'}>
+                <Link href={`/post/${data._id}`}>
                     <div className={`${styles.CategoryContent}`}>
-                        <h4 className={styles.CategoryTitle}>Tên post nè</h4>
-                        <p className={styles.Time}><AiOutlineClockCircle className={styles.TimeIcon}/>3 giờ</p>
+                        <h4 className={styles.CategoryTitle}>{data?.title}</h4>
+                        <p className={styles.Time}><AiOutlineClockCircle className={styles.TimeIcon}/>{moment(data.createdAt).fromNow()}</p>
                     </div>
                 </Link>
             </div>
             <div className="basis-1/6 flex justify-end">
                 <button>
-                <Image className={styles.author} alt="" src="/avatar.jpeg" width={40} height={40}></Image>
+                    {data.author.username}
+                {/* <Image className={styles.author} alt="" src="/avatar.jpeg" width={40} height={40}></Image> */}
                 </button>
             </div>
             <div className="basis-1/3 flex justify-end">
