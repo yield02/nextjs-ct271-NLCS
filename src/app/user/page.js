@@ -3,19 +3,74 @@ import { useState } from 'react'
 import styles from './user.module.scss'
 import Link from 'next/link';
 import { useForm } from "react-hook-form";
+import { useSession } from "next-auth/react";
+import isAuthencation from '@/untils/auth';
+import axios from 'axios';
 
 export default function User(){
 
+    const { data: session, status, update } = useSession();
+    isAuthencation(session);
+
+    const [data, setData] = useState({
+        _id: session.user._id,
+        fullname: session.user?.fullname || "",
+        email: session.user?.email,
+        address: session.user?.address || "",
+    });
+
+    
     const [active, setActive] = useState({ui: "user", state: "show"});
 
-    const { register, formState: { errors },handleSubmit, watch} = useForm();
+    const { register, formState: { errors }, handleSubmit, watch} = useForm();
 
     let newpwd = watch("newpwd");
 
 
     const onSubmitPassword = (data) => {
-
+        let config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: 'http://localhost:3000/api/user/changePwd',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            data : JSON.stringify({...data, _id: session.user._id})
+            };
+    
+            axios.request(config)
+            .then((response) => {
+                if(response.status == 200) {
+                    console.log("Success");
+                }
+            })
+            .catch((error) => {
+            console.log(error);
+            });
     }
+
+
+    const SubmitChangeInformation = (data) => {
+        let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'http://localhost:3000/api/user/updateInformation',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : JSON.stringify({data})
+        };
+
+        axios.request(config)
+        .then((response) => {
+            setData(response.data);
+            update({...session, user: response.data})
+        })
+        .catch((error) => {
+        console.log(error);
+        });
+    }
+
 
 
     return <div className={`${styles.container} mx-auto flex flex-grow`}>
@@ -28,52 +83,52 @@ export default function User(){
         </div>
         {active.ui == "user" && 
         <div className={`flex basis-2/3 ${styles.usershow}`}>
-            <div className="lg:col-span-2">
-                <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-                    <div className="md:col-span-5">
-                        <label htmlFor="full_name">Họ và tên</label>
-                        <input type="text" name="full_name" id="full_name" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" disabled={active.state == 'show' || ''} />
-                    </div>
-
-                    <div className="md:col-span-5">
-                        <label htmlFor="email">Email</label>
-                        <input type="text" name="email" id="email" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" disabled={active.state == 'show' || ''} placeholder="email@domain.com" />
-                    </div>
-
-                    <div className="md:col-span-3">
-                        <label htmlFor="address">Địa chỉ</label>
-                        <input type="text" name="address" id="address" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" disabled={active.state == 'show' || ''} placeholder="" />
-                    </div>
-
-                    <div className="md:col-span-2">
-                        <label htmlFor="city">Thành Phố</label>
-                        <input type="text" name="city" id="city" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" disabled={active.state == 'show' || ''} placeholder="" />
-                    </div>
-      
-                    {
-                        active.state == "show" && 
-                        <div className="md:col-span-5 text-right">
-                            <div className="inline-flex items-end">
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                onClick={() =>setActive((prevstate) => ({...prevstate, state: "editnable"}))}
-                                >Chỉnh sửa
-                            </button>
-                            </div>
+            <form onSubmit={handleSubmit(SubmitChangeInformation)}>
+                <div className="">
+                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-12">
+                        <div className="md:col-span-12">
+                            <label htmlFor="full_name">Họ và tên</label>
+                            <input type="text" name="full_name" id="full_name" className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${active.state == 'show' && styles.show}`} value={data.fullname} onChange={(e) => {setData(prevState => ({...prevState, fullname: e.target.value}))}} disabled={active.state == 'show' || ''} />
                         </div>
-                    }
 
-                    {
-                        active.state == "editnable" && 
-                        <div className="md:col-span-5 text-right">
-                            <div className="inline-flex items-end">
+                        <div className="md:col-span-12">
+                            <label htmlFor="email">Email</label>
+                            <input type="text" name="email" id="email" className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${active.state == 'show' && styles.show}`} value={data.email} onChange={(e) => {setData(prevState => ({...prevState, email: e.target.value}))}} disabled={active.state == 'show' || ''} placeholder="email@domain.com" />
+                        </div>
+
+                        <div className="md:col-span-12">
+                            <label htmlFor="address">Địa chỉ</label>
+                            <input type="text" name="address" id="address" className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${active.state == 'show' && styles.show}`} value={data.address} onChange={(e) => {setData(prevState => ({...prevState, address: e.target.value}))}} disabled={active.state == 'show' || ''} placeholder="" />
+                        </div>
+        
+                        {
+                            active.state == "show" && 
+                            <div className="mt-2 md:col-span-5 text-right">
+                                <div className="inline-flex items-end">
                                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    onClick={() =>setActive((prevstate) => ({...prevstate, state: "show"}))}
-                                    >Lưu thông tin</button>
+                                    onClick={() =>setActive((prevstate) => ({...prevstate, state: "editnable"}))}
+                                    >Chỉnh sửa
+                                </button>
+                                </div>
                             </div>
-                        </div>
-                    }
+                        }
+
+                        {
+                            active.state == "editnable" && 
+                            <div className="mt-2 md:col-span-5 text-right">
+                                <div className="inline-flex items-end">
+                                    <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                        onClick={() =>{
+                                            SubmitChangeInformation(data);
+                                            setActive((prevstate) => ({...prevstate, state: "show"}));
+                                        }}
+                                        >Lưu thông tin</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>}
 
 

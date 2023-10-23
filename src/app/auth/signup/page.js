@@ -25,7 +25,7 @@ export default function Signup() {
             redirect: 'follow'
           };
           
-          fetch("http://localhost:3000/api/category/create", requestOptions)
+          fetch("http://localhost:3000/api/signup", requestOptions)
             .then(response => response.json())
             .then(result => {
                 // Thông báo ở đây

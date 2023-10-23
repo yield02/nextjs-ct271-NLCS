@@ -1,9 +1,10 @@
 "use client"
-import { Editor } from 'react-draft-wysiwyg'
+import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
-import { useState } from 'react';
+import '@/../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
-import '@/../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css' 
+
+import { useEffect, useState } from 'react';
 import * as DOMPurify from 'dompurify';
 import { useSession } from 'next-auth/react';
 import isAuthencation from '@/untils/auth';
@@ -11,22 +12,50 @@ import Link from 'next/link';
 
 import styles from './createpost.module.scss'
 import Button from '@/components/Button/Button';
-
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 
 export default function CreatePost({params}) {
     const { data: session, status } = useSession();
     isAuthencation(session);
-    
+    const router = useRouter();
 
+    const [category, setCategory] = useState({});
 
     const [editor, setEditor] = useState(EditorState.createEmpty());
     const [title, setTitle] = useState("");
 
     // let html = draftToHtml(convertToRaw(editor.getCurrentContent()));
     
+    useEffect(() => {
+
+      let data = JSON.stringify({
+        "id": params.categoryID
+      });
+      
+      let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'http://localhost:3000/api/category/getFromID',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+      
+      axios.request(config)
+      .then((response) => {
+        setCategory(() => response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }, [])
+    
+
     function onEditorStateChange(editor){
-      setEditor(editor)
+      setEditor((state) => editor);
     }
 
     function submit(e) {
@@ -48,17 +77,20 @@ export default function CreatePost({params}) {
       fetch("http://localhost:3000/api/post/create", requestOptions)
         .then(response => response.json())
         .then(result => {
-            console.log(result);
+          router.push(`/post/${result?._id}`);
         })
         .catch(error => console.log('error', error));
     }
-    console.log(editor);
+
+
     return (
         <main className={`${styles.container} container mx-auto`}>
           <div>
             <Link href='/'>Trang chủ</Link>
-            <span>/</span>
-            <Link href={`/category/${params.categoryID}`}>{params.categoryID}</Link>
+            {" > "}
+            <Link href={`/category/${params.categoryID}`}>{category?.category_name}</Link>
+            {" > "}
+            <Link href={`/category/${params.categoryID}/createpost`}>Tạo bài viết</Link>
           </div>
         <div className={styles.box}>
           <h1 className={styles.headerText}>TẠO BÀI VIẾT</h1>

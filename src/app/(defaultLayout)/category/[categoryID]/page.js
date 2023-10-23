@@ -13,7 +13,7 @@ export default function CategoryPage({params}) {
 
   const [data, setData] = useState([]);
 
-  // Fetch data
+  // Fetch data categoryList
   useEffect(()=> {
 
     let config = {

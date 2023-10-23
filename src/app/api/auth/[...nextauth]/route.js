@@ -18,7 +18,6 @@ export const authOptions = {
         const data = await JSON.parse(credentials.data);
         
         const user = login(data);
-
         return user;
       }
     }),
