@@ -63,7 +63,7 @@ export default function PostPage({params}) {
             <div className={`${styles.authorcontainer} flex flex-row items-center`}>
                 <Image className={styles.avatar} alt="" src="/avatar.jpeg" width={40} height={40}></Image>
                 <div className='flex flex-col'>
-                    <h4 className={styles.authorname}>Thanh Nhuong</h4>
+                    <h4 className={styles.authorname}>{data?.author?.fullname || data?.author?.username}</h4>
                     <div className='flex flex-row'>
                         <span className={styles.authorinfor}><MdOutlineLocalCafe className={styles.icons}></MdOutlineLocalCafe>Nhà sáng tạo</span>
                         <span className={styles.authorinfor}><AiOutlineCalendar className={styles.icons}></AiOutlineCalendar>{moment(data.createdAt).fromNow()}</span>

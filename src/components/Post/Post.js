@@ -15,7 +15,7 @@ export default function Category({data, Icon=DocumentIcon}) {
 
                 <Icon></Icon>
                 
-                <Link href={`/post/${data._id}`}>
+                <Link href={`/post/${data?._id}`}>
                     <div className={`${styles.CategoryContent}`}>
                         <h4 className={styles.CategoryTitle}>{data?.title}</h4>
                         <p className={styles.Time}><AiOutlineClockCircle className={styles.TimeIcon}/>{moment(data.createdAt).fromNow()}</p>
@@ -24,7 +24,7 @@ export default function Category({data, Icon=DocumentIcon}) {
             </div>
             <div className="basis-1/6 flex justify-end">
                 <button>
-                    {data.author.username}
+                    {data?.author?.username}
                 {/* <Image className={styles.author} alt="" src="/avatar.jpeg" width={40} height={40}></Image> */}
                 </button>
             </div>

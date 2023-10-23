@@ -58,7 +58,7 @@ export default function User(){
         headers: { 
             'Content-Type': 'application/json'
         },
-        data : JSON.stringify({data})
+        data : JSON.stringify(data)
         };
 
         axios.request(config)
