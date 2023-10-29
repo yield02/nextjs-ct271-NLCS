@@ -8,4 +8,4 @@ const Comment = new Schema({
     user_id: {type: Schema.Types.ObjectId, ref: 'User', require},
 }, {timestamps: true});
 
-export default Comment;
+module.exports = mongoose.models.Comment || mongoose.model('Comment', Comment);

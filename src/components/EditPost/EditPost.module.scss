@@ -1,13 +1,15 @@
-.container {
-    max-width: 1200px;
-    padding: 84px 0px;
-}
-
 .headercontainer {
-    text-align: center;
-    margin-top: 32px;
+    margin: 32px 0px;
     .headerText {
-        font-size: 28px;
+        font-size: 18px;
+    }
+    label {
+        font-size: 18px;
+    }
+    input {
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: 4px 8px;
     }
 }
 
@@ -40,10 +42,16 @@
     }
 }
 
+.editor {
+    border:  1px solid #ccc;
+    padding: 0px 16px;
+    margin-bottom: 16px;
+}
+
 .editBtn {
     text-decoration: underline;
 }
 
-.commentContainer {
-    margin-top: 32px;
+.submitBtn {
+    border: 1px solid #ccc;
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Post from "@/models/Post";
-
+import Category from "@/models/Category";
 
 export async function POST(req, res) {
     const data = await req.json();
@@ -16,8 +16,11 @@ export async function POST(req, res) {
     await post
         .save()
         .then(post => {
+            Category.findOneAndUpdate({_id: data.categoryID}, {newPost: post._id, $inc: {numberPost: 1}});
             return NextResponse.json({post})
         })
-        .catch(err => NextResponse.json({err: err}))
+        .catch(err => NextResponse.json({err: err}));
+        
+    await Category.findOneAndUpdate({_id: data.categoryID}, {newPost: post._id, $inc: {numberPost: 1}});
     return NextResponse.json(post);
 }

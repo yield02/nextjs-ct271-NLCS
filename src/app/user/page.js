@@ -6,10 +6,12 @@ import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
 import isAuthencation from '@/untils/auth';
 import axios from 'axios';
+import Message from '@/components/Message/Message';
 
 export default function User(){
 
     const { data: session, status, update } = useSession();
+    const [message, setMessage] = useState({title: "", type:"warning"});
     isAuthencation(session);
 
     const [data, setData] = useState({
@@ -41,11 +43,11 @@ export default function User(){
             axios.request(config)
             .then((response) => {
                 if(response.status == 200) {
-                    console.log("Success");
+                    setMessage({title: "Đổi mật khẩu thành công", type: 'success'});
                 }
             })
             .catch((error) => {
-            console.log(error);
+                setMessage({title: error.response.data.error, type: 'error'});
             });
     }
 
@@ -76,8 +78,14 @@ export default function User(){
     return <div className={`${styles.container} mx-auto flex flex-grow`}>
         <div className={`flex basis-1/3 ${styles.userlist}`}>
             <ul>
-                <li className={active.ui == "user" ? styles.active : ''} onClick={() => setActive((prevstate) => ({...prevstate, ui: "user"}))}>Thông Tin Tài Khoản</li>
-                <li className={active.ui == "pwd" ? styles.active : ''} onClick={() =>setActive((prevstate) => ({...prevstate, ui: "pwd"}))}>Mật khẩu</li>
+                <li className={active.ui == "user" ? styles.active : ''} onClick={() => {
+                                                                                        setActive((prevstate) => ({...prevstate, ui: "user"}))
+                                                                                        setMessage({title: "", type:"warning"});
+                                                                                        }}>Thông Tin Tài Khoản</li>
+                <li className={active.ui == "pwd" ? styles.active : ''} onClick={() => {
+                                                                                        setActive((prevstate) => ({...prevstate, ui: "pwd"}))
+                                                                                        setMessage({title: "", type:"warning"});
+                                                                                        }}>Mật khẩu</li>
                 <li><Link href={'/'}>Đăng xuất</Link></li>
             </ul>
         </div>
@@ -150,7 +158,7 @@ export default function User(){
                                 } 
                             />
                         </div>
-                        <div className='md:col-span-5'>{errors.pwd && errors.pwd.message}</div>
+                        <div className='md:col-span-5'><Message type="warning">{errors.pwd && errors.pwd.message}</Message></div>
                         
 
 
@@ -167,7 +175,7 @@ export default function User(){
                                 } 
                             />
                         </div>
-                        <div className='md:col-span-5'>{errors.newpwd && errors.newpwd.message}</div>
+                        <div className='md:col-span-5'><Message type="warning">{errors.newpwd && errors.newpwd.message}</Message></div>
                         
 
                         
@@ -183,8 +191,8 @@ export default function User(){
                                 } 
                             />
                         </div>
-                        <div className='md:col-span-5'>{errors.renewpwd && errors.renewpwd.message}</div>
-
+                        <div className='md:col-span-5'><Message type="warning">{errors.renewpwd && errors.renewpwd.message}</Message></div>
+                        <div className='md:col-span-5'><Message type={message.type}>{message.title}</Message></div>
                 
                         <div class="md:col-span-5 text-right">
                             <div class="inline-flex items-end">

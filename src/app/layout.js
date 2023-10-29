@@ -3,6 +3,9 @@ import db from '@/config/database/index'
 import './globals.scss'
 import { authOptions } from './api/auth/[...nextauth]/route'
 import { getServerSession } from 'next-auth'
+import CategoryModel from '@/models/Category';
+import Post from '@/models/Post';
+import CommentModel from '@/models/Comment';
 
 export const metadata = {
   title: 'Diễn Đàn Huyền Học',
@@ -13,6 +16,11 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   await db.connect();
+  //tạm Xử lý lỗi Schema hasn't been registered for model "Category".
+  new CategoryModel({});
+  new Post({});
+  new CommentModel({});
+
   const session = await getServerSession(authOptions);
   return (
     <html lang="en">

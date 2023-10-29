@@ -12,6 +12,7 @@ import axios from 'axios';
 export default function CategoryPage({params}) {
 
   const [data, setData] = useState([]);
+  const [sort, setSort] = useState("desc");
 
   // Fetch data categoryList
   useEffect(()=> {
@@ -24,6 +25,7 @@ export default function CategoryPage({params}) {
         'Content-Type': 'text/plain'
       },
       data : {
+        sort: sort,
         categoryID: params.categoryID
       }
     };

@@ -17,11 +17,11 @@ export default function Category({data, Icon=DocumentIcon}) {
                 </Link>
             </div>
             <div className="basis-1/6 text-end">
-                1231
+                {data?.numberPost}
             </div>
-            <div className="basis-1/3 text-end">
-                2 years, 2 months ago
-                </div>
+            <div className="flex basis-1/3 justify-end">
+                <Link href={`/post/${data?.newPost?._id}`} className={`text-ellipsis overflow-hidden whitespace-nowrap ${styles.newPost}`}>{data?.newPost?.title}</Link>
+            </div>
         </div>)
 }
 
