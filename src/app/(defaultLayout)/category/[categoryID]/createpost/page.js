@@ -2,7 +2,6 @@
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import '@/../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import draftToHtml from 'draftjs-to-html';
 
 import { useEffect, useState } from 'react';
 import * as DOMPurify from 'dompurify';
@@ -60,7 +59,6 @@ export default function CreatePost({params}) {
 
     function submit(e) {
       e.preventDefault();
-
       const data = {
         body: convertToRaw(editor.getCurrentContent()),
         title,

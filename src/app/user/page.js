@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import isAuthencation from '@/untils/auth';
 import axios from 'axios';
 import Message from '@/components/Message/Message';
+import { signOut } from "next-auth/react";
 
 export default function User(){
 
@@ -86,7 +87,7 @@ export default function User(){
                                                                                         setActive((prevstate) => ({...prevstate, ui: "pwd"}))
                                                                                         setMessage({title: "", type:"warning"});
                                                                                         }}>Mật khẩu</li>
-                <li><Link href={'/'}>Đăng xuất</Link></li>
+                <li><button onClick={()=>{signOut()}}>Đăng xuất</button></li>
             </ul>
         </div>
         {active.ui == "user" && 

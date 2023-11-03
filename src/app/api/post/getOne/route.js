@@ -6,7 +6,7 @@ export async function POST(req, res) {
 
     const data = await req.json();
 
-    const post = await Post.findOne({_id: data.postID})
+    const post = await Post.findOne({_id: data.postID, deleteAt: false})
                     .populate('author', ['username', 'fullname'])
                     .populate('category', 'category_name')
                     .exec();

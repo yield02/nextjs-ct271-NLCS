@@ -16,6 +16,9 @@ moment.locale('vi');
 import styles from './post.module.scss';
 import Button from "@/components/Button/Button";
 import EditPost from "@/components/EditPost/EditPost";
+import CommentEditor from "@/components/CommentEditor/CommentEditor";
+import ListComment from "@/components/ListComment/ListComment";
+import { deletePost } from './function'
 
 
 export default function PostPage({params}) {
@@ -47,7 +50,7 @@ export default function PostPage({params}) {
     });
 
   }, [params.postID])
-
+  
     return (
         <div className={`${styles.container} mx-auto`}>
             {data &&
@@ -59,7 +62,7 @@ export default function PostPage({params}) {
               <Link href={`/post/${data?._id}`}>{data?.title}</Link>
 
               {state == "show" && 
-              <>
+              <div className={styles.showContainer}>
                 <div className={styles.headercontainer}>
                     <h1 className={styles.headerText}>{data?.title}</h1>
                 </div>
@@ -75,22 +78,38 @@ export default function PostPage({params}) {
                           </div>
                       </div>
                     </div>
+                    
                     <div>
                       {
-                        data?.author?._id === session?.user?._id && <Button className={styles.editBtn} onClick={()=>setState("editnabled")}>Chỉnh sửa bài viết</Button>
+                        <Button className={styles.editBtn}>Báo cáo bài viết</Button>
                       }
+                      {
+                        
+                        data?.author?._id === session?.user?._id && <>
+                        {"/"}
+                        <Button className={styles.editBtn} id="deletePostBtn" deletebtn={()=>{deletePost({user_id: session?.user?._id, post_id: data?._id, categoryID: data?.category?._id})}}>Xóa</Button>
+                        {"/"}
+                        <Button className={styles.editBtn} onClick={()=>setState("editnabled")}>Chỉnh sửa bài viết</Button>
+                        </>
+                        
+                      }
+                      
                     </div>
                 </div>
                 <div className={styles.bodycontainer}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(draftToHtml(data?.body))}}/>
-              </>
+              </div>
               }
               {
                 state == 'editnabled' && <EditPost data={{setData, data, setState, user: session?.user}}></EditPost>
               }
 
-              <div className={styles.commentContainer}>
-                Comment
-              </div>
+              {
+                state == "show" && 
+                <div className={styles.commentContainer}>
+                  {session?.user?._id  && <CommentEditor></CommentEditor>}
+                  <ListComment></ListComment>
+                </div>
+              }
 
 
 

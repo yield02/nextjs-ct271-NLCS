@@ -1,13 +1,19 @@
 .container {
     max-width: 1200px;
-    padding: 84px 0px;
+    padding: 84px 0px; 
+}
+
+.showContainer {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin: 32px 0px;
+    padding: 32px 16px;
 }
 
 .headercontainer {
     text-align: center;
-    margin-top: 32px;
     .headerText {
         font-size: 28px;
+        font-weight: 600;
     }
 }
 
@@ -42,8 +48,10 @@
 
 .editBtn {
     text-decoration: underline;
+    padding: 8px;
 }
 
 .commentContainer {
     margin-top: 32px;
 }
+

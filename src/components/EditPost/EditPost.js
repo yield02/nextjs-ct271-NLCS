@@ -1,5 +1,4 @@
 "use client"
-import styles from './EditPost.module.scss';
 import Image from 'next/image';
 import { MdOutlineLocalCafe } from "react-icons/md";
 import { AiOutlineCalendar } from "react-icons/ai";
@@ -7,12 +6,13 @@ import '@/../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { EditorState, convertFromRaw, convertToRaw} from 'draft-js';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { Editor } from 'react-draft-wysiwyg';
 import moment from "moment";
 import 'moment/locale/vi'
-import { Editor } from 'react-draft-wysiwyg';
-import Button from '../Button/Button';
 moment.locale('vi');
+
+import styles from './EditPost.module.scss';
+import Button from '../Button/Button';
 
 export default function EditPost({data}) {
 
@@ -23,6 +23,7 @@ export default function EditPost({data}) {
 
     useEffect(()=> {
         if(viewData.body) {
+            console.log(viewData.body)
             setEditor(EditorState.createWithContent(convertFromRaw(viewData.body)));
         }
     }, [viewData])

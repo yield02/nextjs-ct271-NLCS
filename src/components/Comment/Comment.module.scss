@@ -1,0 +1,60 @@
+
+.container {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin: 24px 0;
+
+    .userContainer {
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        padding: 8px 16px;
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+        }
+
+        .username {
+            text-align: center;
+            font-size: 14px;
+            transition: all 0.2s ease;
+
+            &:hover {
+                color: #8685EF;
+            }
+
+
+        }
+
+        .authorinfor {
+            opacity: 0.8;
+            font-size: 12px;
+            .icons {
+                font-size: 14px;
+                margin-right: 2px;
+            }
+        }
+    }
+
+    .bodyContainer {
+        .bodyText {
+            padding: 8px 16px;
+        }
+
+        .bodyAction {
+            padding: 0px 16px;
+            .editBtn {
+                padding: 0px 8px;
+                text-decoration: underline;
+            }
+    
+            .information {
+                font-size: 12px;
+                opacity: 0.8;
+                margin-left: 8px;
+                .icons {
+                    margin-right: 2px;
+                }
+            }
+        }
+
+    }
+}
