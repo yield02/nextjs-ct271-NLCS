@@ -6,10 +6,17 @@ import '@/../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { EditorState, convertFromRaw, convertToRaw} from 'draft-js';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Editor } from 'react-draft-wysiwyg';
+
 import moment from "moment";
 import 'moment/locale/vi'
 moment.locale('vi');
+
+import dynamic from 'next/dynamic';
+const Editor = dynamic(
+  () => import('react-draft-wysiwyg').then(mod => mod.Editor),
+  { ssr: false }
+)
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import styles from './EditPost.module.scss';
 import Button from '../Button/Button';
@@ -23,7 +30,6 @@ export default function EditPost({data}) {
 
     useEffect(()=> {
         if(viewData.body) {
-            console.log(viewData.body)
             setEditor(EditorState.createWithContent(convertFromRaw(viewData.body)));
         }
     }, [viewData])

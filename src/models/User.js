@@ -9,7 +9,8 @@ const User = new Schema({
     email: {type: String, require: true},
     address: {type: String},
     isAdmin: {type: Boolean, default: false},
-    role: {type: String, default: "Thành Viên Mới"}
+    status: {type: Object, default: {status: "allow"}},
+    role: {type: String, default: "Khách vãng lai"} /* Khách vãng lai/Thành viên/Thành viên tích cực/ Thành viên cao cấp */
 }, {timestamps: true});
 
 

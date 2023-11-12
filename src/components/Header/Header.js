@@ -20,7 +20,7 @@ export default function Header() {
                         <Image className={styles.icon} src="/header/header-icon.png" width={160} height={160} alt='header-icon'></Image>
                     </Link>
                 </div>
-                <div className=''>
+                <div>
                     <Search></Search>
                 </div>
             </div>

@@ -1,0 +1,42 @@
+
+.container {
+    padding-top: 84px;
+    min-height: 100vh;
+}
+
+.flexContainer {
+    padding: 16px 0px;
+
+    .mamagerItem {
+        padding: 8px 16px;
+        min-width: 180px;
+        cursor: pointer;
+        margin-bottom: 8px;
+        font-size: 14px;
+        border-left: 4px solid transparent;
+        transition: all 0.15s ease;
+        font-weight: 500;
+        .icons {
+            font-size: 24px;
+            margin-right: 4px;
+        }
+
+        &.active {
+            color: rgb(0, 22, 131);
+            border-left: 4px solid rgb(79,107,255);
+            background: rgba(79,107,255, 0.1);
+        }
+        &:hover {
+            color: rgb(0, 22, 131);
+            border-left: 4px solid rgb(79,107,255);
+            background: rgba(79,107,255, 0.1);
+        }
+    }
+}
+
+.flexContainer:first-child {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.flexContainer:last-child {
+    box-shadow: rgba(0, 0, 0, 0.15) -1.95px 1.95px 2.6px;
+}

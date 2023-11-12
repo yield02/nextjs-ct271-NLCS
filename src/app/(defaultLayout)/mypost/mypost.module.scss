@@ -1,0 +1,65 @@
+
+.container {
+    max-width: 1200px;
+    padding: 84px 0px;
+}
+
+.actionAll {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px;
+}
+
+.filterActions {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.boxHeader {
+    padding: 17px 15px;
+    background: rgba(76, 76, 241, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .styles.boxHeaderText {
+
+    }
+}
+
+.addPost {
+    border-top: 1px solid #ddd;
+    padding: 17px 15px;
+    font-size: 18px;
+    .addbtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .addIcon {
+        font-size: 42px;
+        margin-right: 16px;
+    }
+    &:hover {
+        background: #f7f9fa;
+        transition: all 0.12s linear;
+    }
+}
+
+.statusBox {
+    display: flex;
+    flex-direction: column;
+    .warning {
+        color: darkorange;
+    }
+    .banned {
+        color: crimson;
+    }
+}

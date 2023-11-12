@@ -144,11 +144,11 @@ export default function User(){
         {active.ui == "pwd" && 
         <div className={`flex basis-2/3 ${styles.usershow}`}>
             <form onSubmit={handleSubmit(onSubmitPassword)}>
-                <div class="lg:col-span-2">
-                    <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-                        <div class="md:col-span-5">
+                <div className="lg:col-span-2">
+                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                        <div className="md:col-span-5">
                             <label htmlFor="pwd">Mật khẩu hiện tại</label>
-                            <input type="password" id="pwd" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                            <input type="password" id="pwd" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                 {...register("pwd", 
                                         {
                                             required: "Bạn chưa nhập mật khẩu",
@@ -163,9 +163,9 @@ export default function User(){
                         
 
 
-                        <div class="md:col-span-5">
+                        <div className="md:col-span-5">
                             <label htmlFor="newpwd">Mật khẩu mới</label>
-                            <input type="password" id="newpwd" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                            <input type="password" id="newpwd" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                 {...register("newpwd", 
                                         {
                                             required: "Bạn chưa nhập mật khẩu",
@@ -180,9 +180,9 @@ export default function User(){
                         
 
                         
-                        <div class="md:col-span-5">
+                        <div className="md:col-span-5">
                             <label htmlFor="renewpwd">Mật khẩu xác nhận lại</label>
-                            <input type="password" id="renewpwd" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                            <input type="password" id="renewpwd" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                 {...register("renewpwd", 
                                         {
                                             required: "Bạn chưa nhập lại mật khẩu", 
@@ -195,9 +195,9 @@ export default function User(){
                         <div className='md:col-span-5'><Message type="warning">{errors.renewpwd && errors.renewpwd.message}</Message></div>
                         <div className='md:col-span-5'><Message type={message.type}>{message.title}</Message></div>
                 
-                        <div class="md:col-span-5 text-right">
-                            <div class="inline-flex items-end">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Đổi mật khẩu</button>
+                        <div className="md:col-span-5 text-right">
+                            <div className="inline-flex items-end">
+                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Đổi mật khẩu</button>
                             </div>
                         </div>
                     </div>

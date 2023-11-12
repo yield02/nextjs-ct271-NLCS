@@ -1,0 +1,30 @@
+.searchContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f6f7f9;
+}
+
+.searchInput {
+    width: 100%;
+    background: transparent;
+    min-width: 280px;
+    font-weight: 400;
+    border: 0;
+    outline: 0;
+    border-radius: 6px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 39px;
+    text-indent: 0;
+}
+
+.btn {
+    font-size: 24px;
+}

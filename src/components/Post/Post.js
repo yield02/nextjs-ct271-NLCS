@@ -29,7 +29,7 @@ export default function Category({data, Icon=DocumentIcon}) {
                 </button>
             </div>
             <div className="basis-1/3 flex justify-end">
-                <AiOutlineComment className={styles.commentIcon}/> 30
+                <AiOutlineComment className={styles.commentIcon}/> {data?.totalComment}
             </div>
         </div>)
 }

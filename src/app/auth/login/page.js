@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 import styles from './login.module.scss'
@@ -18,9 +18,13 @@ export default function Login() {
     const router = useRouter();
     const { data: session, status } = useSession();
     
-    if(session) {
-        router.push('/');
-    }
+    useEffect(()=> {
+        if(session) {
+            router.push('/');
+        }
+    }, [])
+
+    
 
 
 

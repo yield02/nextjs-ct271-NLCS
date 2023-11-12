@@ -94,11 +94,11 @@ export default function CreatePost({params}) {
           <h1 className={styles.headerText}>TẠO BÀI VIẾT</h1>
           <form onSubmit={submit}>
             <div className={`${styles.titleBox} flex justify-start flex-col`}>
-              <label className={styles.labelTitle} for="title">Tiêu đề bài viết:</label>
+              <label className={styles.labelTitle} htmlFor="title">Tiêu đề bài viết:</label>
               <input className={styles.title} id="title" type='text' name="title" value={title} onChange={(e) => setTitle(e.target.value)}></input>
             </div>
             <div>
-              <label className={styles.labelTitle} for="title">Nội dung bài viết:</label>
+              <label className={styles.labelTitle} htmlFor="title">Nội dung bài viết:</label>
               <Editor
                 editorState={editor}
                 wrapperClassName="demo-wrapper"

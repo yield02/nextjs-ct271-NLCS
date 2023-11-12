@@ -22,16 +22,17 @@ export default function CategoryPage({params}) {
       maxBodyLength: Infinity,
       url: 'http://localhost:3000/api/post/getAll',
       headers: { 
-        'Content-Type': 'text/plain'
+        'Content-Type': 'application/json'
       },
-      data : {
+      data : JSON.stringify({
         sort: sort,
         categoryID: params.categoryID
-      }
+      })
     };
     
     axios.request(config)
     .then((response) => {
+        console.log(response.data);
         setData(response.data);
     })
     .catch((error) => {
@@ -39,7 +40,6 @@ export default function CategoryPage({params}) {
     });
 
   }, [])
-  
   return (
     <main className={`${styles.container} container mx-auto`}>
           <Link className={styles.addbtn} href={`/`}>Trang chủ</Link>

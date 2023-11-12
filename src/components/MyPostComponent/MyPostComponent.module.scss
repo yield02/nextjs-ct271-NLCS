@@ -1,0 +1,27 @@
+.container {
+    padding: 8px 16px;
+}
+
+
+.header {
+    margin-bottom: 64px;
+
+    .headingText {
+        font-size: 28px;
+        font-weight: 600;
+    }
+}
+
+.reasonBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.pagination {
+    margin-top: 32px;
+}
+
+.postsLink {
+    text-decoration: underline;
+    color: blue;
+}

@@ -1,13 +1,16 @@
 import Link from 'next/link'
 import styles from './MenuItem.module.scss'
 
-export default function MenuItem({children, Icon, href, ...props}) {
+export default function MenuItem({children, Icon, ...props}) {
     let Comp = "button";
-    if(href) {
+    if(props.href) {
         Comp = Link;
     }
 
-    return <Comp {...props} href={href} className={styles.container}>{Icon && <Icon className={styles.icon}></Icon>}{children}</Comp>
+    return <Comp {...props} className={styles.container}>
+            {Icon && <Icon className={styles.icon}></Icon>}
+                {children}
+            </Comp>
 }
 
 

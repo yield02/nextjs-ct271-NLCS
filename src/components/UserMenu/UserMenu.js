@@ -22,8 +22,8 @@ export default function UserMenu({data, children, className='', ...props}) {
             clickable
         >
             <MenuItem href={"/user"} Icon={AiOutlineUser}>{data?.username}</MenuItem>
-            {data?.isAdmin == true && <MenuItem href={"/auth/login"} Icon={MdOutlineManageAccounts}>Quản lý bài viết</MenuItem>}
-            <MenuItem href={"/auth/login"} Icon={BsReverseLayoutTextWindowReverse}>Bài viết của tôi</MenuItem>
+            {data?.isAdmin == true && <MenuItem href={"/manager"} Icon={MdOutlineManageAccounts}>Quản lý bài viết</MenuItem>}
+            <MenuItem href={"/mypost"} Icon={BsReverseLayoutTextWindowReverse}>Bài viết của tôi</MenuItem>
             <MenuItem onClick={()=>{signOut()}} Icon={FaArrowRightToBracket}>Đăng xuất</MenuItem>
         </Tooltip>
         </Link> 

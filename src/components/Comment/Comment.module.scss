@@ -31,6 +31,55 @@
                 font-size: 14px;
                 margin-right: 2px;
             }
+            &.admininfor {
+                
+                color: #f33956; 
+                background-clip: text; -webkit-background-clip: text; 
+                text-fill-color: transparent; 
+                -webkit-text-fill-color: transparent;
+                animation: adminText linear 2s infinite;
+                transition: all 2s linear;
+            }
+        }
+
+        
+    }
+
+    @keyframes adminText {
+        0% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 0%, #ffffff 0%); 
+        }
+        10% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 10%, #ffffff 0%); 
+        }
+        20% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 20%, #ffffff 0%); 
+        }
+        30% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 30%, #ffffff 0%); 
+        }
+        40% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 40%, #ffffff 0%); 
+        }
+        50% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 50%, #ffffff 0%); 
+        }
+        60% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 60%, #ffffff 0%); 
+        }
+        70% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 70%, #ffffff 0%); 
+        }
+        80% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 80%, #ffffff 0%); 
+
+        }
+        90% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 90%, #ffffff 0%); 
+
+        }
+        100% {
+            background-image: -webkit-linear-gradient(0deg, #f33956 100%, #ffffff 0%);
         }
     }
 
@@ -51,10 +100,28 @@
                 opacity: 0.8;
                 margin-left: 8px;
                 .icons {
-                    margin-right: 2px;
+                    margin-right: 3px;
                 }
             }
         }
 
     }
+}
+
+.editor {
+    padding: 4px 16px;
+}
+
+.saveBtn {
+        margin: 4px 16px;
+        height: 30px;
+        font-size: 14px;
+        line-height: 30px;
+        padding: 0 15px;
+        font-weight: 400;
+        color: #fff;
+        border-radius: 4px;
+        background: #3577f1;
+        display: inline-block;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.18s ease-in-out;
 }

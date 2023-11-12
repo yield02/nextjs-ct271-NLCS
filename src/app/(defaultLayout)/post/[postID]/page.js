@@ -1,9 +1,8 @@
 "use client"
 import { MdOutlineLocalCafe } from "react-icons/md";
 import { AiOutlineCalendar } from "react-icons/ai";
-import * as DOMPurify from 'dompurify';
+import DOMPurify from 'dompurify';
 import draftToHtml from 'draftjs-to-html';
-import { convertFromRaw } from 'draft-js';
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -16,9 +15,8 @@ moment.locale('vi');
 import styles from './post.module.scss';
 import Button from "@/components/Button/Button";
 import EditPost from "@/components/EditPost/EditPost";
-import CommentEditor from "@/components/CommentEditor/CommentEditor";
 import ListComment from "@/components/ListComment/ListComment";
-import { deletePost } from './function'
+import { deletePostTemp } from './function'
 
 
 export default function PostPage({params}) {
@@ -30,7 +28,7 @@ export default function PostPage({params}) {
   useEffect(()=> {
 
     let config = {
-      method: 'post',
+      method: 'POST',
       maxBodyLength: Infinity,
       url: 'http://localhost:3000/api/post/getOne',
       headers: { 
@@ -81,13 +79,10 @@ export default function PostPage({params}) {
                     
                     <div>
                       {
-                        <Button className={styles.editBtn}>Báo cáo bài viết</Button>
-                      }
-                      {
                         
                         data?.author?._id === session?.user?._id && <>
                         {"/"}
-                        <Button className={styles.editBtn} id="deletePostBtn" deletebtn={()=>{deletePost({user_id: session?.user?._id, post_id: data?._id, categoryID: data?.category?._id})}}>Xóa</Button>
+                        <Button className={styles.editBtn} id="deletePostBtn" deletebtn={()=>{deletePostTemp({user_id: session?.user?._id, post_id: data?._id, categoryID: data?.category?._id})}}>Ẩn</Button>
                         {"/"}
                         <Button className={styles.editBtn} onClick={()=>setState("editnabled")}>Chỉnh sửa bài viết</Button>
                         </>
@@ -96,7 +91,9 @@ export default function PostPage({params}) {
                       
                     </div>
                 </div>
+
                 <div className={styles.bodycontainer}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(draftToHtml(data?.body))}}/>
+              
               </div>
               }
               {
@@ -106,14 +103,10 @@ export default function PostPage({params}) {
               {
                 state == "show" && 
                 <div className={styles.commentContainer}>
-                  {session?.user?._id  && <CommentEditor></CommentEditor>}
-                  <ListComment></ListComment>
+                  <ListComment post_id={params.postID} session={session}>
+                  </ListComment>
                 </div>
               }
-
-
-
-
             </>}
         </div>
         )

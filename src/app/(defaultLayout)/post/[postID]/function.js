@@ -1,7 +1,8 @@
 import axios from "axios";
 
 
-function deletePost(data) {
+function deletePostTemp(data) {
+    console.log(data);
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
@@ -9,7 +10,7 @@ function deletePost(data) {
         headers: { 
           'Content-Type': 'text/plain'
         },
-        data : JSON.stringify(data)
+        data : JSON.stringify({...data, deleteTemp: true})
       };
       
       axios.request(config)
@@ -23,4 +24,4 @@ function deletePost(data) {
       });
 }
 
-export { deletePost };
+export { deletePostTemp };
