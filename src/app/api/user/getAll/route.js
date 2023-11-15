@@ -15,7 +15,6 @@ export async function POST(req, res) {
         let users = await User.find()
                     .select({pwd: 0})
                     .sort({createdAt: data.sort})
-                    .skip(data.page*10-10).limit(data.page*10)
                     .exec()
         users = await Promise.all(users.map(async (user) => {
             const totalPost = await Post.countDocuments({author: user._id});

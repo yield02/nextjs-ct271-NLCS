@@ -11,10 +11,10 @@ export default function Home() {
 
   useEffect(()=> {
     let config = {
-      method: 'get',
+      method: 'POST',
       maxBodyLength: Infinity,
       url: 'http://localhost:3000/api/category/getAll',
-      headers: { }
+      headers: {}
     };
     
     axios.request(config)

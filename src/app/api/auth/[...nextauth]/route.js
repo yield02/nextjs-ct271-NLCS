@@ -18,6 +18,7 @@ export const authOptions = {
         const data = await JSON.parse(credentials.data);
         
         const user = login(data);
+
         return user;
       }
     }),
@@ -27,10 +28,16 @@ export const authOptions = {
     })
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      return { ...token, ...user };
+    async signIn({user, account, profile, email, credentials }) {
+      if(user.status.status === 'allow') {
+        return user;
+      }
+      return false;
     },
-    async session({session, token, user }) {
+    async jwt({token, user}) {
+      return {...token, ...user}
+    },
+    async session({session, token, user}) {
       session.user = token;
       return session;
     }

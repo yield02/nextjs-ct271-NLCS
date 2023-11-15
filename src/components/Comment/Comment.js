@@ -24,6 +24,7 @@ import '@/../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import moment from "moment";
 import 'moment/locale/vi'
 import { useState } from "react";
+import { toast } from "react-toastify";
 moment.locale('vi');
 
 export default function Comment({data, remove}) {
@@ -55,6 +56,7 @@ export default function Comment({data, remove}) {
             axios.request(config)
                 .then((response) => {
                     if(response.status == 200) {
+                        toast.success("Chỉnh sửa bình luận thành công!!!");
                         setData(prev => (
                             {   ...prev, 
                                 body: convertToRaw(editor.getCurrentContent()),
@@ -63,6 +65,7 @@ export default function Comment({data, remove}) {
                     }
                 })
                 .catch((error) => {
+                    toast.error("Chỉnh sửa bình luận thất bại!!!");
                     console.log(error);
                 });
         }
@@ -87,10 +90,12 @@ export default function Comment({data, remove}) {
         axios.request(config)
             .then((response) => {
                 if(response.status == 200) {
+                    toast.success("Xóa bình luận thành công!!!");
                     remove(data._id);
                 }
             })
             .catch((error) => {
+                toast.error("Xóa bình luận thất bại!!!");
                 console.log(error);
             });
     }

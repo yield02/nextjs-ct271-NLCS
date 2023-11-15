@@ -13,7 +13,7 @@ import styles from './createpost.module.scss'
 import Button from '@/components/Button/Button';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-
+import { toast } from 'react-toastify';
 
 export default function CreatePost({params}) {
     const { data: session, status } = useSession();
@@ -75,6 +75,7 @@ export default function CreatePost({params}) {
       fetch("http://localhost:3000/api/post/create", requestOptions)
         .then(response => response.json())
         .then(result => {
+          toast.success("Đăng bài thành công, vui lòng chờ giây lát !");
           router.push(`/post/${result?._id}`);
         })
         .catch(error => console.log('error', error));

@@ -5,13 +5,14 @@ import Link from 'next/link';
 import { useForm } from "react-hook-form";
 import { getSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 import { signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 import styles from './login.module.scss'
+import Message from "@/components/Message/Message";
 
 export default function Login() {
 
@@ -38,9 +39,18 @@ export default function Login() {
         const jsondata = JSON.stringify(data);
         const req = await signIn('credentials', {redirect: false, data: jsondata});
         if(req.error) {
-            setMessage("Vui lòng kiểm tra lại tài khoản và mật khẩu");
+            if(req.error == "CredentialsSignin") {
+                setMessage("Vui lòng kiểm tra lại tài khoản và mật khẩu");
+            }
+            else {
+                setMessage("Tài khoản của bạn đã bị khóa vui lòng liên hệ admin");
+            }
         }
         else {
+            if(session?.user?.username) {
+                console.log("OK");
+                toast.success("Đăng nhập với ", session?.user?.username);
+            }
             router.push('/');
         }
     };
@@ -79,7 +89,7 @@ export default function Login() {
                     <div className={styles.inner}></div>
                     <button>ĐĂNG NHẬP</button>
                 </div>
-                {message}
+                <Message type={"error"} >{message}</Message>
             </form>
             <div className={styles.auth}>
             HOẶC

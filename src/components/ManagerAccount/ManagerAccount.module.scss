@@ -1,0 +1,47 @@
+.container {
+    position: relative;
+    padding: 8px 16px;
+}
+
+.header {
+    .headingText {
+        font-size: 28px;
+        font-weight: 600;
+    }
+}
+
+.pagination {
+    margin-top: 32px;
+}
+
+.modalContainer {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .modalBox{
+        background: #fff;
+        border-radius: 4px;
+        padding: 16px;
+        .modalTitle {
+            text-align: center;
+            margin: 8px 0px;
+
+        }
+
+        .actionBox {
+            margin-top: 8px;
+            
+        }
+    }
+}
+
+.status {
+    color: firebrick;
+}

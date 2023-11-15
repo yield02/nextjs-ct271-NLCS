@@ -16,6 +16,7 @@ const Editor = dynamic(
 )
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { set } from "mongoose";
+import { toast } from "react-toastify";
 
 export default function CommentEditor({post_id, updateComment}) {
 
@@ -48,10 +49,12 @@ export default function CommentEditor({post_id, updateComment}) {
           
           axios.request(config)
           .then((response) => {
+            toast.success("Đăng bình luận thành công!!!");
             setEditor(EditorState.createEmpty());
             updateComment();
           })
           .catch((error) => {
+            toast.success("Đăng bình luận thất bại!!!");
             console.log(error);
           });
         }

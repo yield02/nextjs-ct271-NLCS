@@ -1,8 +1,8 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 function deletePostTemp(data) {
-    console.log(data);
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
@@ -16,10 +16,11 @@ function deletePostTemp(data) {
       axios.request(config)
       .then((response) => {
         if(response.status == 200) {
-            alert("Xóa thành công");
+          toast.success("Ẩn bài viết thành công!!!");
         }
       })
       .catch((error) => {
+        toast.error("Ẩn bài viết thất bại!!!");
         console.log(error);
       });
 }

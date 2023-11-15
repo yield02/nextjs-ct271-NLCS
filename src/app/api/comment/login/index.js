@@ -8,26 +8,9 @@ export default async function login(data) {
     const user = await query.findOne();
 
     if(user && (await bcrypt.compare(data.pwd, user.pwd))) {
-        const { pwd, status, ...userWithoutPwd } = user._doc;
+        const { pwd, ...userWithoutPwd } = user._doc;
 
-
-        console.log(status.status === 'allow');
-
-        if(status.status === 'allow') {
-            const result = {
-                ...userWithoutPwd
-            }
-            return result;
-        }
-
-        if(status.status === 'banned') {
-            return {
-                message: `Tài khoản ${userWithoutPwd.username} đã bị khóa vui lòng liên hệ admin`,
-                reason: status?.reason
-            }
-        }
-
-        return null;
+        return {...userWithoutPwd};
     }
     else {
         return null;

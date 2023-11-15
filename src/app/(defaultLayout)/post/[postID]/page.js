@@ -81,7 +81,6 @@ export default function PostPage({params}) {
                       {
                         
                         data?.author?._id === session?.user?._id && <>
-                        {"/"}
                         <Button className={styles.editBtn} id="deletePostBtn" deletebtn={()=>{deletePostTemp({user_id: session?.user?._id, post_id: data?._id, categoryID: data?.category?._id})}}>Ẩn</Button>
                         {"/"}
                         <Button className={styles.editBtn} onClick={()=>setState("editnabled")}>Chỉnh sửa bài viết</Button>

@@ -20,6 +20,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import styles from './EditPost.module.scss';
 import Button from '../Button/Button';
+import { toast } from 'react-toastify';
 
 export default function EditPost({data}) {
 
@@ -58,6 +59,7 @@ export default function EditPost({data}) {
         axios.request(config)
             .then((response) => {
                 if(response.status == 200) {
+                    toast.success("Chỉnh sửa bài viết thành công!!!");
                     setData(prev => (
                         {   ...prev, 
                             body: convertToRaw(editor.getCurrentContent()),
@@ -67,6 +69,7 @@ export default function EditPost({data}) {
                 }
             })
             .catch((error) => {
+                toast.error("Chỉnh sửa bài viết thất bại!!!");
                 console.log(error);
             });
     }
