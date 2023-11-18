@@ -69,11 +69,6 @@ export default function ManagerAccount() {
           size: 150,
         },
         {
-          accessorKey: 'address', //normal accessorKey
-          header: 'Địa chỉ',
-          size: 200,
-        },
-        {
           accessorKey: 'status', //normal accessorKey
           header: 'Trạng thái',
           Cell: ({cell}) => {

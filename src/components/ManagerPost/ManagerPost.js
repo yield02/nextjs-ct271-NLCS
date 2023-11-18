@@ -146,14 +146,14 @@ export default function ManagerPost() {
 
           const handleDelete = () => {
             const rows = table?.getSelectedRowModel()?.flatRows.map((row) => row.getValue('_id'));
-            console.log(rows);
+            // console.log(rows);
 
           };
 
          const handleAllow = () => {
 
             const rows = table?.getSelectedRowModel()?.flatRows.map((row) => row.getValue('_id'));
-            console.log(rows);
+            // console.log(rows);
 
           }
  

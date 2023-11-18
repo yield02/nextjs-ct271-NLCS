@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 
@@ -23,6 +24,7 @@ export function BannedAccount(_id, reason, setData) {
       .then((response) => {
         
         if(response.status == 200) {
+            toast.success("Khóa tài khoản thành công!!");
             setData(prev => {
                 const updateData = prev.map(item => {
                     if(item?._id == _id) {
@@ -33,11 +35,11 @@ export function BannedAccount(_id, reason, setData) {
                 return updateData;
             })
             return true;
-            alert("Thành công");
         }
           
       })
       .catch((error) => {
+        toast.error("Khóa tài khoản thất bại!!");
         console.log(error);
         return false;
       });

@@ -8,11 +8,23 @@ import Comment from "@/models/Comment";
 export async function POST(req, res) {
     const data = await req.json();
     const session = await getServerSession(authOptions);
-    const comment = await Comment.findOneAndDelete({_id: data._id, user_id: session.user._id});
-    if(comment) {
-        return NextResponse.json({message: "xóa thành công"}, {status: 200});
+    if(session?.user?.isAdmin) {
+        const comment = await Comment.findOneAndDelete({_id: data._id});
+        if(comment) {
+            return NextResponse.json({message: "xóa thành công"}, {status: 200});
+        }
+        else {
+            return NextResponse.json({message: "xóa thành công"}, {status: 400});
+        }
     }
     else {
-        return NextResponse.json({message: "xóa thành công"}, {status: 400});
+        const comment = await Comment.findOneAndDelete({_id: data._id, user_id: session.user._id});
+        if(comment) {
+            return NextResponse.json({message: "xóa thành công"}, {status: 200});
+        }
+        else {
+            return NextResponse.json({message: "xóa thành công"}, {status: 400});
+        }
     }
+    
 }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 export function convertState(status) {
@@ -36,6 +37,7 @@ export function RestorePost(_id, user_id, categoryID, setData) {
       axios.request(config)
       .then((response) => {
           if(response.status == 200) {
+            toast.success("Khôi phục bài viết thành công!!!");
             setData(prev => {
                 const updateData  = prev.map(item => {
                     if(item._id === data?._id) {
@@ -45,17 +47,17 @@ export function RestorePost(_id, user_id, categoryID, setData) {
                 })
                 return updateData
             })
-            alert("Thành công");
           }
       })
       .catch((error) => {
+        toast.error("Khôi phục bài viết thất bại!!!");
         console.log(error);
       });
 }
 
 export function DeleteManyPost(data, setData) {
     
-    console.log(data);
+    // console.log(data);
 
     let config = {
         method: 'post',
@@ -70,16 +72,17 @@ export function DeleteManyPost(data, setData) {
       axios.request(config)
       .then((response) => {
           if(response.status == 200) {
+            toast.success("Xóa bài viết thành công!!!");
             setData(prev => {
                 const updateData  = prev.filter(item => {
                     return !data.postsId.includes(item._id);
                 })
                 return updateData;
             })
-            alert("Thành công");
           }
       })
       .catch((error) => {
+        toast.error("Xóa bài viết thất bại!!!");
         console.log(error);
       });
 }

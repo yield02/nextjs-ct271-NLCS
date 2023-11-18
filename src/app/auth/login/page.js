@@ -48,7 +48,7 @@ export default function Login() {
         }
         else {
             if(session?.user?.username) {
-                console.log("OK");
+                // console.log("OK");
                 toast.success("Đăng nhập với ", session?.user?.username);
             }
             router.push('/');

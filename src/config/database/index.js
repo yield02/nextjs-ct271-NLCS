@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 async function connect() {
     try {
         if(!mongoose.connection.readyState) {
-            await mongoose.connect('mongodb://127.0.0.1:27017/Nextjs-forum-NLCS');
+            await mongoose.connect('mongodb+srv://thanhnhuong0702:b2014682NLCS@cluster0.wb3cmop.mongodb.net/Nextjs-forum-NLCS');
             console.log('Database Connect successfully!!!');
         }
     } catch (error) {

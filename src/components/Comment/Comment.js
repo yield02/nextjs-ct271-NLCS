@@ -121,9 +121,15 @@ export default function Comment({data, remove}) {
                     <div className="flex flex-row">
                         {/* <Button className={styles.editBtn}>Trả lời</Button> */}
                         {
-                            session?.user?._id == viewData?.user_id?._id && 
+                            (session?.user?._id == viewData?.user_id?._id || session?.user?.isAdmin) && 
                             <>
                                 <Button className={styles.editBtn} id="deleteCommentBtn" deletebtn={deleteComment}>Xóa</Button>
+                            </>
+                        }
+
+                        {
+                            (session?.user?._id == viewData?.user_id?._id) && 
+                            <>
                                 <Button className={styles.editBtn} onClick={()=> {setState('editnable')}}>Chỉnh sửa</Button>
                             </>
                         }

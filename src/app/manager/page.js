@@ -18,7 +18,7 @@ import ManagerAccount from '@/components/ManagerAccount/ManagerAccount';
 
 export default function Manager({params}) {
   const { data: session, status } = useSession();
-  // isAuthencation(session);
+  isAuthencation(session);
 
   const [data, setData] = useState([]);
   const [sort, setSort] = useState("desc");

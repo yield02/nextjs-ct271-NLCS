@@ -33,7 +33,7 @@ export async function POST(req, res) {
         }
     }
     else if(session.user._id == data.user_id && data.deleteTemp) {
-        console.log(data);
+        // console.log(data);
         const post = await Post.findOneAndUpdate({_id: data.post_id, deleteAt: false, author: data.user_id}, {deleteAt: true});
         
         if(post) {

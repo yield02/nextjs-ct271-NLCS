@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 
@@ -16,7 +17,6 @@ const fetchUpdateStatus = (data) => {
   axios.request(config)
   .then((response) => {
       if(response.status == 200) {
-        alert("Thành công");
       }
   })
   .catch((error) => {
@@ -38,15 +38,15 @@ const fetchDeletePost = (data, setData) => {
   axios.request(config)
   .then((response) => {
       if(response.status == 200) {
+        toast.success("Xóa bài viết thành công!!!");
         setData(prev => {
           const dataUpdate = prev.filter(item => item._id != data._id)
-          console.log(dataUpdate);
           return dataUpdate;
         })
-        alert("Thành công");
       }
   })
   .catch((error) => {
+    toast.error("Xóa bài viết thất bại!!!");
     console.log(error);
   });
 } 
@@ -88,7 +88,6 @@ const findPostWithName = (name, setData, manager=false) => {
   .then((response) => {
       if(response.status == 200) {
         setData((prev) => ([...response.data]))
-        alert("Thành công");
       }
   })
   .catch((error) => {

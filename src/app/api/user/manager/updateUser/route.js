@@ -10,7 +10,7 @@ export async function POST(req, res) {
     const session = await getServerSession(authOptions);
     if(session?.user?._id && session?.user?.isAdmin == true) {
         console.log("[UPDATE USER] admin mod");
-        console.log(data);
+        // console.log(data);
         let user = await User.findOneAndUpdate({_id: data._id}, {status: data.status})
         if(user) {
             return NextResponse.json(user);

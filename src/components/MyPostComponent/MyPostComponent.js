@@ -69,7 +69,7 @@ export default function MyPostComponent() {
       }
     }, [data, filter.pageCurrent])
 
-    console.log(data);
+    // console.log(data);
 
     const columns = useMemo(
         () => [

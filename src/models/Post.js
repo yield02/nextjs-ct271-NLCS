@@ -8,7 +8,7 @@ const Post = new Schema({
     author: { type: Schema.Types.ObjectId, ref: 'User', require: true},
     category: {type: Schema.Types.ObjectId, ref: 'Category', require: true},
     status: {type: Object, default: {
-        status: "allow",
+        status: "waiting",
         reason: ""
     }}, /* waiting, allow, banned, delete */
     deleteAt: {type: Boolean, default: false}
