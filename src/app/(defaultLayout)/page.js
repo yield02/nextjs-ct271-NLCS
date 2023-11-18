@@ -13,7 +13,7 @@ export default function Home() {
     let config = {
       method: 'POST',
       maxBodyLength: Infinity,
-      url: 'http://localhost:3000/api/category/getAll',
+      url: 'b2014682-nextjs-ct271-nlcs-i3zk-pqhvpf0ql.vercel.app/api/category/getAll',
       headers: {}
     };
     
